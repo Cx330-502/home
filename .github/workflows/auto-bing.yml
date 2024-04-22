@@ -44,7 +44,7 @@ jobs:
 #        git commit -m "Site deployed by GitHub Actions"
 #        git pull --allow-unrelated-histories "https://$GH_TOKEN@$REPO" master
 #        git push --force --quiet "https://$GH_TOKEN@$REPO" master:master
-         git checkout -b master
-         git add -A
-         git commit -m "Update Bing Images"
-         git push origin master
+        git checkout -b master
+        git add -A
+        git commit -m "Update Bing Images"
+        git push origin master

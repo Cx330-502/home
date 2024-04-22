@@ -36,11 +36,15 @@ jobs:
         REPO: github.com/Cx330-502/Cx330-502.github.io
         GH_TOKEN: ${{ secrets.GH_TOKEN }}
       run: |
-        touch CNAME && echo 'cx330-502.top' > CNAME
-        git add .
-        git config --global user.name $GIT_NAME
-        git config --global user.email $GIT_EMAIL
-        git config --global pull.rebase false
-        git commit -m "Site deployed by GitHub Actions"
-        git pull --allow-unrelated-histories "https://$GH_TOKEN@$REPO" master
-        git push --force --quiet "https://$GH_TOKEN@$REPO" master:master
+#        touch CNAME && echo 'cx330-502.top' > CNAME
+#        git add .
+#        git config --global user.name $GIT_NAME
+#        git config --global user.email $GIT_EMAIL
+#        git config --global pull.rebase false
+#        git commit -m "Site deployed by GitHub Actions"
+#        git pull --allow-unrelated-histories "https://$GH_TOKEN@$REPO" master
+#        git push --force --quiet "https://$GH_TOKEN@$REPO" master:master
+         git checkout -b master
+         git add -A
+         git commit -m "Update Bing Images"
+         git push origin master

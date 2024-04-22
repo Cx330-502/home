@@ -1,0 +1,46 @@
+name: Auto Update Bing Images CI
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 1 * * *"
+  push:
+    branches: [ gh-pages ]
+  pull_request:
+    branches: [ gh-pages ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    # checkout
+    - name: checkout
+      uses: actions/checkout@v2
+      with:
+        submodules: true
+
+      # setup nodejs
+    - name: Setup Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: '16.x'
+
+    - name: Update Bing Images
+      run: node ./assets/js/bing.js
+
+    # commit
+    - name: Deploy to Github Pages
+      env:
+        GIT_NAME: Cx330-502
+        GIT_EMAIL: ${{ secrets.GIT_EMAIL }}
+        REPO: github.com/Cx330-502/Cx330-502.github.io
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      run: |
+        touch CNAME && echo 'cx330-502.top' > CNAME
+        git config --global user.name $GIT_NAME
+        git config --global user.email $GIT_EMAIL
+        git checkout -b master
+        git add -A
+        git commit -m "Update Bing Images"
+        git pull origin master --rebase
+        git push origin master

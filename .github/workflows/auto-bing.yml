@@ -37,12 +37,11 @@ jobs:
         GH_TOKEN: ${{ secrets.GH_TOKEN }}
       run: |
         touch CNAME && echo 'cx330-502.top' > CNAME
-        git config --global user.name $GIT_NAME
-        git config --global user.email $GIT_EMAIL
-        git config --global pull.rebase false
-        git checkout -b master
-        git add -A && git pull origin master --allow-unrelated-histories
-        git checkout --theirs ./assets/json/images.json && git add ./assets/json/images.json
-        git checkout --ours . && git add .
-        git commit -m "Update Bing Images"
-        git push origin master
+        git config --local user.email 'github-actions[bot]@users.noreply.github.com'
+        git config --local user.name 'github-actions[bot]'
+        git diff --exit-code || git add . && git commit -am '[bot] update images.json' --allow-empty
+    # push
+    - name: push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GH_TOKEN }}

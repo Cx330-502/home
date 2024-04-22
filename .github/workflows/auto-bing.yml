@@ -39,8 +39,10 @@ jobs:
         touch CNAME && echo 'cx330-502.top' > CNAME
         git config --global user.name $GIT_NAME
         git config --global user.email $GIT_EMAIL
+        git config --global pull.rebase false
         git checkout -b master
-        git add -A
+        git add -A && git pull origin master
+        git checkout --theirs ./assets/json/images.json && git add ./assets/json/images.json
+        git checkout --ours . && git add .
         git commit -m "Update Bing Images"
-        git pull origin master 
         git push origin master

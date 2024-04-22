@@ -42,5 +42,5 @@ jobs:
         git checkout -b master
         git add -A
         git commit -m "Update Bing Images"
-        git pull --strategy-option ours
+        git pull origin master --strategy-option ours
         git push origin master

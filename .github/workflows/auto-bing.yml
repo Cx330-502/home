@@ -37,4 +37,5 @@ jobs:
         git config --global pull.rebase false
         git commit -m "Site deployed by GitHub Actions"
         git pull "https://$GH_TOKEN@$REPO" master
+        git merge --allow-unrelated-histories -m "Merge"
         git push --force --quiet "https://$GH_TOKEN@$REPO" master:master

@@ -31,7 +31,7 @@ jobs:
         GH_TOKEN: ${{ secrets.GH_TOKEN }}
       run: |
         touch CNAME && echo 'cx330-502.top' > CNAME
-        git init && git add .
+        git add .
         git config --global user.name $GIT_NAME
         git config --global user.email $GIT_EMAIL
         git commit -m "Site deployed by GitHub Actions"

@@ -30,7 +30,7 @@ jobs:
         REPO: github.com/Cx330-502/Cx330-502.github.io
         GH_TOKEN: ${{ secrets.GH_TOKEN }}
       run: |
-        cd ./public && touch CNAME && echo 'cx330-502.top' > CNAME
+        touch CNAME && echo 'cx330-502.top' > CNAME
         git init && git add .
         git config --global user.name $GIT_NAME
         git config --global user.email $GIT_EMAIL
